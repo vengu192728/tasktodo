@@ -176,3 +176,23 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(24px);
 }
+
+
+/* Task Form */
+form textarea {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: var(--container-bg-color);
+  color: var(--text-color);
+  resize: vertical; /* Allow the user to resize the textarea vertically */
+  min-height: 100px; /* Set a minimum height for the textarea */
+}
+
+/* Optional: Add focus styling for better UX */
+form textarea:focus {
+  outline: none;
+  border-color: var(--button-bg-color);
+  box-shadow: 0 0 5px var(--button-bg-color);
+}

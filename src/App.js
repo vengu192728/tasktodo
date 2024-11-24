@@ -1,7 +1,8 @@
-// src/App.js
 import React, { useState, useEffect } from 'react';
 import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 
 function App() {
@@ -14,8 +15,18 @@ function App() {
     localStorage.setItem('theme', newTheme);
   };
 
+
+  //public/darktheme
   useEffect(() => {
     document.body.className = theme;
+    // Apply dark theme background image if dark theme is selected
+    if (theme === 'dark') {
+      document.body.style.backgroundImage = 'url(/darktheme.jpg)';
+      document.body.style.backgroundSize = 'cover'; // Cover the entire body
+      document.body.style.backgroundPosition = 'center'; // Center the image
+    } else {
+      document.body.style.backgroundImage = 'none'; // Remove background image for light theme
+    }
   }, [theme]);
 
   const addTask = (task) => {
@@ -44,17 +55,21 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* Theme Toggle in the Top-Right Corner */}
+      {/* Theme Toggle with Icon */}
       <div className="theme-toggle-container">
-        <span>{theme === 'dark' ? 'Dark Mode' : 'Light Mode'}</span>
-        <label className="theme-toggle">
-          <input
-            type="checkbox"
-            checked={theme === 'dark'}
-            onChange={toggleTheme}
-          />
-          <span className="slider"></span>
-        </label>
+        <button
+          onClick={toggleTheme}
+          aria-label="Toggle theme"
+          style={{
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            fontSize: '24px',
+            color: theme === 'dark' ? '#FFD700' : '#4B5563',
+          }}
+        >
+          <FontAwesomeIcon icon={theme === 'dark' ? faMoon : faSun} />
+        </button>
       </div>
 
       <h1>TaskTodo</h1>
